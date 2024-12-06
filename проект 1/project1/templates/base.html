@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <h1>Рубрики</h1>
+    <a href="{% url 'index_html' %}">Главноя страница</a>
+    <a href="{% url 'add' %}">Добовление публикации</a>
+        {% for rubric in rubrics %}
+            <a href="{% url 'by_rubric' rubric.id %}">{{ rubric.name }}</a>
+        {% endfor %}
+
+  {% block content %}
+
+  {% endblock %}
+</body>
+</html>
