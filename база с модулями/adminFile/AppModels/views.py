@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from AppModels.models import *
 
 
-# Create your views here.
-
-def index(request):
-    return HttpResponse('Hello World')
+def get_data(request):
+    news_list = News.objects.all()
+    return render(request, 'index.html', {'news_list': news_list})

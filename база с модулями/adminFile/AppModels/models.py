@@ -1,4 +1,5 @@
 from django.db import models
+from AppModels.validators import *
 # Create your models here.
 
 class IceCreamShop(models.Model):
@@ -54,3 +55,17 @@ class Child(models.Model):
     
     def __str__(self):
         return self.name
+
+class News(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=100)
+    content = models.TextField(null=True, blank=True)
+    price = models.IntegerField(validators=[validate_more_zero])
+    published = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    def __str__(self):
+        return self.title
